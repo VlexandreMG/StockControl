@@ -13,6 +13,6 @@ public class Main {
         article.setPrix(5.0);
 
         InventoryStock inventory = new InventoryStock();
-        System.out.println(inventory.EntreeOuSortie(article, "ENTREE"));
+        System.out.println(inventory.EntreeOuSortie(article, "SORTIE"));
     }
 }

@@ -32,7 +32,24 @@ public class InventoryStock {
 
             return mvtStock;
         } else if (type.equals("SORTIE")) {
-            return null;
+            MvtStockService mvtStockService = new MvtStockService();
+            MvtStock mvtStock = mvtStockService.sortieFifo(historiqueMvt, article, date);
+                //Ajout au mouvement de Stock
+            historiqueMvt.add(mvtStock);
+                //Affichage de la sortie
+            System.out.println("===============================\n");
+            System.out.println("Stock après sortie : " + mvtStock.getStock() + "\n"+
+            "Date de sortie : " + mvtStock.getDate() + "\n"+
+            "Quantité sortie : " + article.getQuantite() + "\n"+
+            "Prix untaire de la sortie : " + article.getPrix() + "\n"+
+            "Valeur de la sortie : " + mvtStock.getValeur() + "\n"+
+            "Stock : " + mvtStock.getStock() + "\n"+ 
+            "Valeur du stock : " + mvtStock.getValeurStock() + "\n"+
+            "CUMP : " + mvtStock.getCump() + "\n"+
+            "Type de mouvement : " + mvtStock.getType() + "\n"+
+            "Source : " + mvtStock.getSource() + "\n");
+            System.out.println("===============================\n");
+            return mvtStock;
         } else {
             return null;
         }

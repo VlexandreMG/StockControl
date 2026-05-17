@@ -3,7 +3,6 @@ package services;
 import java.util.Date;
 import models.Article;
 import models.MvtStock;
-
 import java.util.List;;
 
 public class MvtStockService {
@@ -67,13 +66,34 @@ public class MvtStockService {
         return null;
     }
 
-    public MvtStock sortieFifo(List<MvtStock> historiqueMvt) {
-            //Mitety ligne 
+    public MvtStock sortieFifo(List<MvtStock> historiqueMvt, Article article , Date date ) {
+            
+        int sortie = article.getQuantite();
+        //Mitety ligne 
         for (MvtStock mvt : historiqueMvt) {
             int articleQuantite = mvt.getArticle().getQuantite();
-            
+            if (articleQuantite == sortie) {
+                    // Calcul du valeur stock 
+                double valeurStockAvant = calculerValeurStock(article, historiqueMvt);
+                double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
+                    // Calcul du stock après la sortie
+                int dernierStock = calculerStock(article, historiqueMvt);
+                int stockSortie = dernierStock - sortie;
+                    // Création du mouvement de sortie
+                MvtStock mvtStock = new MvtStock();
+                mvtStock.setArticle(article);
+                mvtStock.setValeur(sortie * mvt.getArticle().getQuantite());
+                mvtStock.setStock(stockSortie);
+                mvtStock.setValeurStock(valeurStockApres);
+                mvtStock.setDate(date);
+                mvtStock.setType("SORTIE");
+                mvtStock.setSource(mvt.getId());
+                
+                    //Changement sur l'article 
+                article.setPrix(mvt.getArticle().getPrix());
+                return mvtStock;
+            }
         }
-
         return null;
     }
 }

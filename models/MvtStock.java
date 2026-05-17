@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 
 public class MvtStock {
+    private int id;
     private Date date;
     private Article article;
     private double valeur;
@@ -13,6 +14,14 @@ public class MvtStock {
     private String type;
 
     public MvtStock() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getType() {
         return type;

@@ -74,7 +74,7 @@ public class MvtStockService {
             int articleQuantite = mvt.getArticle().getQuantite();
             if (articleQuantite == sortie) {
                     // Calcul du valeur stock 
-                double valeurStockAvant = calculerValeurStock(article, historiqueMvt);
+                double valeurStockAvant = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
                 double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
                     // Calcul du stock après la sortie
                 int dernierStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();

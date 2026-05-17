@@ -62,4 +62,18 @@ public class MvtStockService {
         mvtStock.setType(type);
         return mvtStock;
     }
+
+    public MvtStock creerSortie() {
+        return null;
+    }
+
+    public MvtStock sortieFifo(List<MvtStock> historiqueMvt) {
+            //Mitety ligne 
+        for (MvtStock mvt : historiqueMvt) {
+            int articleQuantite = mvt.getArticle().getQuantite();
+            
+        }
+
+        return null;
+    }
 }

@@ -1,18 +1,37 @@
 package services;
 
 import models.Article;
+import java.util.List;
+import java.util.Date;
+import models.MvtStock;
 
 public class InventoryStock {
-    
+
     public InventoryStock() {};
 
-    public String EntreeOuSortie(Article article, String type) {
+    public MvtStock EntreeOuSortie(Article article, List<Double> valeurStock , List<Integer> stock, Date date ,String type) {
         if (type.equals("ENTREE")) {
-            return "Entrée de " + article.getQuantite() + " " + article.getNom() + " au prix de " + article.getPrix() + "€";
+            MvtStockService mvtStockService = new MvtStockService();
+            MvtStock mvtStock = mvtStockService.creerEntree(date,article,valeurStock,stock,type);
+
+            System.out.println("===============================\n");
+            System.out.println("Stock après entrée : " + mvtStock.getStock() + "\n"+
+            "Date d'entrée : " + mvtStock.getDate() + "\n"+
+            "Quantité entrée : " + article.getQuantite() + "\n"+
+            "Prix untaire de l'entrée : " + article.getPrix() + "\n"+
+            "Valeur de l'entrée : " + mvtStock.getValeur() + "\n"+
+            "Stock : " + mvtStock.getStock() + "\n"+ 
+            "Valeur du stock : " + mvtStock.getValeurStock() + "\n"+
+            "CUMP : " + mvtStock.getCump() + "\n"+
+            "Type de mouvement : " + mvtStock.getType() + "\n"+
+            "Source : " + mvtStock.getSource() + "\n");
+            System.out.println("===============================\n");
+
+            return mvtStock;
         } else if (type.equals("SORTIE")) {
-            return "Sortie de " + article.getQuantite() + " " + article.getNom() + " au prix de " + article.getPrix() + "€";
+            return null;
         } else {
-            return "Type d'opération inconnu.";
+            return null;
         }
     }
 }

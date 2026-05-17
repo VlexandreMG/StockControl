@@ -43,7 +43,7 @@ public class MvtStockService {
         return article.getQuantite() * article.getPrix();
     }
 
-    public MvtStock creerEntree(Article article, List<Double> valeurStock, List<Integer> stock, Date date, String type) {
+    public MvtStock creerEntree(Date date,Article article, List<Double> valeurStock, List<Integer> stock, String type) {
             //Bloc des fonctions 
         double valeur = calculerValeur(article);
         int quantite = calculerStock(article, stock);

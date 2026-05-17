@@ -4,8 +4,7 @@ import java.util.Date;
 
 public class MvtStock {
     private Date date;
-    private int quantite;
-    private double prixUnitaire;
+    private Article article;
     private double valeur;
     private int stock;
     private double valeurStock;
@@ -29,17 +28,11 @@ public class MvtStock {
     public void setDate(Date date) {
         this.date = date;
     }
-    public int getQuantite() {
-        return quantite;
+    public Article getArticle() {
+        return article;
     }
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-    public double getPrixUnitaire() {
-        return prixUnitaire;
-    }
-    public void setPrixUnitaire(double prixUnitaire) {
-        this.prixUnitaire = prixUnitaire;
+    public void setArticle(Article article) {
+        this.article = article;
     }
     public double getValeur() {
         return valeur;

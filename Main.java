@@ -15,9 +15,8 @@ public class Main {
         article.setQuantite(10);
         article.setPrix(5.0);
 
-            //date maina b 
-        Date date = new Date();
-        date.setTime(System.currentTimeMillis());
+            // Date du jour uniquement (sans heure)
+        Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
 
             //List stock 
         List<Double> valeurStock = new ArrayList<>();

@@ -1,5 +1,7 @@
 import services.InventoryStock;
 import models.Article;
+import models.MvtStock;
+
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -15,14 +17,21 @@ public class Main {
         article.setQuantite(10);
         article.setPrix(5.0);
 
+        Article article2 = new Article();
+        article2.setNom("Test2");
+        article2.setQuantite(20);
+        article2.setPrix(10.0);
+
             // Date du jour uniquement (sans heure)
         Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
-
-            //List stock 
-        List<Double> valeurStock = new ArrayList<>();
-        List<Integer> stock = new ArrayList<>();
         
+            //Liste de tous les mouvements
+        List<MvtStock> historiqueMvt = new ArrayList<>();
+
         InventoryStock inventory = new InventoryStock();
-        inventory.EntreeOuSortie(article, valeurStock, stock, date, "ENTREE");
+        inventory.EntreeOuSortie(article, historiqueMvt, date, "ENTREE");
+
+            // Taille d'historiqueMvt après l'entrée
+        System.out.println("Taille de l'historique des mouvements après entrée : " + historiqueMvt.size());
     }
 }

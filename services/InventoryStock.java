@@ -9,10 +9,13 @@ public class InventoryStock {
 
     public InventoryStock() {};
 
-    public MvtStock EntreeOuSortie(Article article, List<Double> valeurStock , List<Integer> stock, Date date ,String type) {
+    public MvtStock EntreeOuSortie(Article article, List<MvtStock> historiqueMvt, Date date ,String type) {
         if (type.equals("ENTREE")) {
+                //Appel de creerEntree
             MvtStockService mvtStockService = new MvtStockService();
-            MvtStock mvtStock = mvtStockService.creerEntree(date,article,valeurStock,stock,type);
+            MvtStock mvtStock = mvtStockService.creerEntree(date,article,historiqueMvt,type);
+                //Ajout au mouvement de Stock 
+            historiqueMvt.add(mvtStock);
 
             System.out.println("===============================\n");
             System.out.println("Stock après entrée : " + mvtStock.getStock() + "\n"+

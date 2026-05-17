@@ -19,22 +19,22 @@ public class MvtStockService {
         return 0;
     }
 
-    public double calculerValeurStock(Article article , List<Double> valeurStock) {
-        if (valeurStock.isEmpty()) {
+    public double calculerValeurStock(Article article , List<MvtStock> historiqueMvt) {
+        if (historiqueMvt.isEmpty()) {
             return article.getQuantite() * article.getPrix();
         } else {
             //Get the last element of the list
-            double lastValeurStock = valeurStock.get(valeurStock.size() - 1);
+            double lastValeurStock = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
             return lastValeurStock + (article.getQuantite() * article.getPrix());
         }
     }
     
-    public int calculerStock(Article article , List<Integer> stock) {
-        if (stock.isEmpty()) {
+    public int calculerStock(Article article , List<MvtStock> historiqueMvt) {
+        if (historiqueMvt.isEmpty()) {
             return article.getQuantite();
         } else {
             //Get the last element of the list
-            int lastStock = stock.get(stock.size() - 1);
+            int lastStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();
             return lastStock + article.getQuantite();
         }
     }
@@ -43,11 +43,11 @@ public class MvtStockService {
         return article.getQuantite() * article.getPrix();
     }
 
-    public MvtStock creerEntree(Date date,Article article, List<Double> valeurStock, List<Integer> stock, String type) {
+    public MvtStock creerEntree(Date date,Article article, List<MvtStock> historiqueMvt, String type) {
             //Bloc des fonctions 
         double valeur = calculerValeur(article);
-        int quantite = calculerStock(article, stock);
-        double valeurStocke = calculerValeurStock(article, valeurStock);
+        int quantite = calculerStock(article, historiqueMvt);
+        double valeurStocke = calculerValeurStock(article, historiqueMvt);
         double cump = calculerCUMP(article);
         int source = getSource();
             //Bloc création de l'objet MvtStock

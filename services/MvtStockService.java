@@ -82,7 +82,7 @@ public class MvtStockService {
                     // Création du mouvement de sortie
                 MvtStock mvtStock = new MvtStock();
                 mvtStock.setArticle(article);
-                mvtStock.setValeur(sortie * mvt.getArticle().getQuantite());
+                mvtStock.setValeur(sortie * mvt.getArticle().getPrix());
                 mvtStock.setStock(stockSortie);
                 mvtStock.setValeurStock(valeurStockApres);
                 mvtStock.setDate(date);

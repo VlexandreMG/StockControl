@@ -18,7 +18,7 @@ public class InventoryStock {
             historiqueMvt.add(mvtStock);
 
             System.out.println("===============================\n");
-            System.out.println("Stock après entrée : " + mvtStock.getStock() + "\n"+
+            System.out.println(
             "Date d'entrée : " + mvtStock.getDate() + "\n"+
             "Quantité entrée : " + article.getQuantite() + "\n"+
             "Prix untaire de l'entrée : " + article.getPrix() + "\n"+
@@ -38,7 +38,7 @@ public class InventoryStock {
             historiqueMvt.add(mvtStock);
                 //Affichage de la sortie
             System.out.println("===============================\n");
-            System.out.println("Stock après sortie : " + mvtStock.getStock() + "\n"+
+            System.out.println(
             "Date de sortie : " + mvtStock.getDate() + "\n"+
             "Quantité sortie : " + article.getQuantite() + "\n"+
             "Prix untaire de la sortie : " + article.getPrix() + "\n"+

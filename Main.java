@@ -22,6 +22,11 @@ public class Main {
         article2.setQuantite(20);
         article2.setPrix(10.0);
 
+        Article article3 = new Article();
+        article3.setNom("Sortie");
+        article3.setQuantite(20);
+        article3.setPrix(15.0);
+
             // Date du jour uniquement (sans heure)
         Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
         
@@ -31,6 +36,7 @@ public class Main {
         InventoryStock inventory = new InventoryStock();
         inventory.EntreeOuSortie(article2, historiqueMvt, date, "ENTREE");
         inventory.EntreeOuSortie(article, historiqueMvt, date, "ENTREE");
+        inventory.EntreeOuSortie(article3, historiqueMvt, date, "SORTIE");
 
             // Taille d'historiqueMvt après l'entrée
         System.out.println("Taille de l'historique des mouvements après entrée : " + historiqueMvt.size());

@@ -11,8 +11,17 @@ public class MvtStock {
     private double valeurStock;
     private double cump;
     private int source;
+    private String type;
 
     public MvtStock() {}
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Date getDate() {
         return date;

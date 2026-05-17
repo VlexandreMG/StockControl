@@ -2,8 +2,8 @@ package models;
 
 public class Article {
     private String nom;
-    private String quantite;
-    private String prix;
+    private int quantite;
+    private double prix;
 
     public Article() {}
 
@@ -15,19 +15,19 @@ public class Article {
         this.nom = nom;
     }
 
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(String quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
 
-    public String getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     };
 

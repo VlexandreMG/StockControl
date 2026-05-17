@@ -29,6 +29,7 @@ public class Main {
         List<MvtStock> historiqueMvt = new ArrayList<>();
 
         InventoryStock inventory = new InventoryStock();
+        inventory.EntreeOuSortie(article2, historiqueMvt, date, "ENTREE");
         inventory.EntreeOuSortie(article, historiqueMvt, date, "ENTREE");
 
             // Taille d'historiqueMvt après l'entrée

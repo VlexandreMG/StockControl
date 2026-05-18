@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import models.Article;
 import models.MvtStock;
@@ -66,8 +67,9 @@ public class MvtStockService {
         return null;
     }
 
-    public MvtStock sortieFifo(List<MvtStock> historiqueMvt, Article article , Date date ) {
-            
+    public List<MvtStock> sortieFifo(List<MvtStock> historiqueMvt, Article article , Date date ) {
+            //Liste de sortie generee
+        List<MvtStock> sortieGeneree = new ArrayList<>();
         int sortie = article.getQuantite();
         //Mitety ligne 
         for (MvtStock mvt : historiqueMvt) {
@@ -91,7 +93,9 @@ public class MvtStockService {
                 
                     //Changement sur l'article 
                 article.setPrix(mvt.getArticle().getPrix());
-                return mvtStock;
+                    //Ajout dans la liste 
+                sortieGeneree.add(mvtStock);
+                return sortieGeneree;
             } else if (articleQuantite > sortie) {
                     // Calcul du stock après la sortie
                 int dernierStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();
@@ -111,8 +115,21 @@ public class MvtStockService {
                     //Changement sur l'article 
                 article.setQuantite(sortie);
                 article.setPrix(mvt.getArticle().getPrix());
-                return mvtStock;
+                    //Ajout dans la liste 
+                sortieGeneree.add(mvtStock);
+                return sortieGeneree;
             } else if (articleQuantite < sortie) {
+                    //Création du mvtStock 
+                MvtStock mvtStock = new MvtStock();
+                mvtStock.setArticle(article);
+                mvtStock.setValeur(mvt.getArticle().getQuantite() * mvt.getArticle().getPrix());
+                mvtStock.setStock(sortie - mvt.getArticle().getQuantite());
+                mvtStock.setValeurStock(sortie);
+                mvtStock.setDate(date);
+                mvtStock.setType("SORTIE");
+                mvtStock.setSource(mvt.getId());
+                    //Ajout dans la liste des sorties 
+                sortieGeneree.add(mvtStock);
                     // Calcul anle soustraction 
                 sortie = sortie - articleQuantite;
             }

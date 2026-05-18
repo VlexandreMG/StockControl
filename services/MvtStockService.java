@@ -96,9 +96,10 @@ public class MvtStockService {
                     // Calcul du stock après la sortie
                 int dernierStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();
                 int stockSortie = dernierStock - sortie;
-                // Calcul du valeur stock 
+                    // Calcul du valeur stock 
                 double valeurStockAvant = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
                 double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
+                    // Création du mouvement de sortie
                 MvtStock mvtStock = new MvtStock();
                 mvtStock.setArticle(article);
                 mvtStock.setValeur(sortie * mvt.getArticle().getPrix());
@@ -111,6 +112,9 @@ public class MvtStockService {
                 article.setQuantite(sortie);
                 article.setPrix(mvt.getArticle().getPrix());
                 return mvtStock;
+            } else if (articleQuantite < sortie) {
+                    // Calcul anle soustraction 
+                sortie = sortie - articleQuantite;
             }
         }
         return null;

@@ -92,6 +92,25 @@ public class MvtStockService {
                     //Changement sur l'article 
                 article.setPrix(mvt.getArticle().getPrix());
                 return mvtStock;
+            } else if (articleQuantite > sortie) {
+                    // Calcul du stock après la sortie
+                int dernierStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();
+                int stockSortie = dernierStock - sortie;
+                // Calcul du valeur stock 
+                double valeurStockAvant = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
+                double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
+                MvtStock mvtStock = new MvtStock();
+                mvtStock.setArticle(article);
+                mvtStock.setValeur(sortie * mvt.getArticle().getPrix());
+                mvtStock.setStock(stockSortie);
+                mvtStock.setValeurStock(valeurStockApres);
+                mvtStock.setDate(date);
+                mvtStock.setType("SORTIE");
+                mvtStock.setSource(mvt.getId());
+                    //Changement sur l'article 
+                article.setQuantite(sortie);
+                article.setPrix(mvt.getArticle().getPrix());
+                return mvtStock;
             }
         }
         return null;

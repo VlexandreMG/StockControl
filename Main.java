@@ -33,7 +33,7 @@ public class Main {
         article4.setPrix(20.0);
 
         Article article5 = new Article();
-        article5.setNom("Test5");
+        article5.setNom("Test2");
         article5.setQuantite(30);
         article5.setPrix(20.0);
 

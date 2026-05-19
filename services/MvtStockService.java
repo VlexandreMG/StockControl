@@ -54,6 +54,7 @@ public class MvtStockService {
         int source = getSource();
         // Bloc création de l'objet MvtStock
         MvtStock mvtStock = new MvtStock();
+        mvtStock.setNomArticle(article.getNom());
         mvtStock.setQuantite(article.getQuantite());
         mvtStock.setPrixUnitaire(article.getPrix());
         mvtStock.setValeur(valeur);
@@ -168,9 +169,12 @@ public class MvtStockService {
         List<MvtStock> sortieGeneree = new ArrayList<>();
 
         // Boucle sur l'historique des mvt
-        for (MvtStock mvtStock : historiQueMvt) {
+        // Remplacer le for (MvtStock mvtStock : historiQueMvt) par un for classique :
+        for (int i = 0; i < historiQueMvt.size(); i++) {
+            // On récupère l'élément à l'indice i
+            MvtStock mvtStock = historiQueMvt.get(i);
 
-            if (mvtStock.getType() != "ENTREE" || !mvtStock.getNomArticle().equals(nomArticle)) {
+            if (!mvtStock.getType().equals("ENTREE") || !mvtStock.getNomArticle().equals(nomArticle)) {
                 continue;
             }
 
@@ -183,7 +187,6 @@ public class MvtStockService {
             double derniereValeurStock = historiQueMvt.get(historiQueMvt.size() - 1).getValeurStock();
 
             if (dispoLot >= reste) {
-
                 MvtStock mvt = new MvtStock();
                 mvt.setNomArticle(nomArticle);
                 mvt.setQuantite(reste);
@@ -211,7 +214,7 @@ public class MvtStockService {
 
                 sortieGeneree.add(mvt);
 
-                historiQueMvt.add(mvt);
+                historiQueMvt.add(mvt); // <─── ICI : Ça ne plantera plus !
                 reste = reste - dispoLot;
             }
         }

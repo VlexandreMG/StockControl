@@ -199,6 +199,7 @@ public class MvtStockService {
                 mvt.setSource(mvtStock.getId());
 
                 sortieGeneree.add(mvt);
+                historiQueMvt.add(mvt); // <─── ICI : Ça ne plantera plus !
                 return sortieGeneree;
             } else {
                 MvtStock mvt = new MvtStock();

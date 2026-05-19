@@ -27,8 +27,9 @@ public class InventoryStock {
             System.out.println("===============================\n");
             System.out.println(
                     "Date d'entrée : " + mvtStock.getDate() + "\n" +
-                            "Quantité entrée : " + article.getQuantite() + "\n" +
-                            "Prix untaire de l'entrée : " + article.getPrix() + "\n" +
+                            "Nom de l'article : " + mvtStock.getNomArticle() + "\n" +
+                            "Quantité entrée : " + mvtStock.getQuantite() + "\n" +
+                            "Prix untaire de l'entrée : " + mvtStock.getPrixUnitaire() + "\n" +
                             "Valeur de l'entrée : " + mvtStock.getValeur() + "\n" +
                             "Stock : " + mvtStock.getStock() + "\n" +
                             "Valeur du stock : " + mvtStock.getValeurStock() + "\n" +
@@ -39,7 +40,7 @@ public class InventoryStock {
 
             return ListmvtStock;
         } else if (type.equals("SORTIE")) {
-            List<MvtStock> ListSortieStock = mvtStockService.sortieFifo(historiqueMvt, article, date);
+            List<MvtStock> ListSortieStock = mvtStockService.sortieFifo(article, historiqueMvt, date);
             // Ajout à la liste de mvt stock
             ListmvtStock.addAll(ListSortieStock);
             // Ajout au mouvement de Stock
@@ -49,8 +50,9 @@ public class InventoryStock {
                 System.out.println("===============================\n");
                 System.out.println(
                         "Date de sortie : " + mvtStock.getDate() + "\n" +
-                                "Quantité sortie : " + article.getQuantite() + "\n" +
-                                "Prix untaire de la sortie : " + article.getPrix() + "\n" +
+                                "Nom de l'article : " + mvtStock.getNomArticle() + "\n" +
+                                "Quantité sortie : " + mvtStock.getQuantite() + "\n" +
+                                "Prix untaire de la sortie : " + mvtStock.getPrixUnitaire() + "\n" +
                                 "Valeur de la sortie : " + mvtStock.getValeur() + "\n" +
                                 "Stock : " + mvtStock.getStock() + "\n" +
                                 "Valeur du stock : " + mvtStock.getValeurStock() + "\n" +

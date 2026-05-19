@@ -54,12 +54,7 @@ public class MvtStock {
     public void setDate(Date date) {
         this.date = date;
     }
-    public Article getArticle() {
-        return article;
-    }
-    public void setArticle(Article article) {
-        this.article = article;
-    }
+    
     public double getValeur() {
         return valeur;
     }

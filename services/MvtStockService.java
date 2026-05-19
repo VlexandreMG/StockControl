@@ -52,7 +52,8 @@ public class MvtStockService {
         int source = getSource();
             //Bloc création de l'objet MvtStock
         MvtStock mvtStock = new MvtStock();
-        mvtStock.setArticle(article);
+        mvtStock.setQuantite(article.getQuantite());
+        mvtStock.setPrixUnitaire(article.getPrix());
         mvtStock.setValeur(valeur);
         mvtStock.setStock(quantite);
         mvtStock.setValeurStock(valeurStocke);
@@ -73,18 +74,19 @@ public class MvtStockService {
         int sortie = article.getQuantite();
         //Mitety ligne 
         for (MvtStock mvt : historiqueMvt) {
-            int articleQuantite = mvt.getArticle().getQuantite();
+            int articleQuantite = article.getQuantite();
             if (articleQuantite == sortie) {
                     // Calcul du valeur stock 
                 double valeurStockAvant = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
-                double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
+                double valeurStockApres = valeurStockAvant - sortie * article.getPrix();
                     // Calcul du stock après la sortie
                 int dernierStock = historiqueMvt.get(historiqueMvt.size() - 1).getStock();
                 int stockSortie = dernierStock - sortie;
                     // Création du mouvement de sortie
                 MvtStock mvtStock = new MvtStock();
-                mvtStock.setArticle(article);
-                mvtStock.setValeur(sortie * mvt.getArticle().getPrix());
+                mvtStock.setQuantite(article.getQuantite());
+                mvtStock.setPrixUnitaire(article.getPrix());
+                mvtStock.setValeur(sortie * article.getPrix());
                 mvtStock.setStock(stockSortie);
                 mvtStock.setValeurStock(valeurStockApres);
                 mvtStock.setDate(date);
@@ -92,7 +94,7 @@ public class MvtStockService {
                 mvtStock.setSource(mvt.getId());
                 
                     //Changement sur l'article 
-                article.setPrix(mvt.getArticle().getPrix());
+                article.setPrix(article.getPrix());
                     //Ajout dans la liste 
                 sortieGeneree.add(mvtStock);
                 return sortieGeneree;
@@ -102,11 +104,12 @@ public class MvtStockService {
                 int stockSortie = dernierStock - sortie;
                     // Calcul du valeur stock 
                 double valeurStockAvant = historiqueMvt.get(historiqueMvt.size() - 1).getValeurStock();
-                double valeurStockApres = valeurStockAvant - sortie * mvt.getArticle().getPrix();
+                double valeurStockApres = valeurStockAvant - sortie * article.getPrix();
                     // Création du mouvement de sortie
                 MvtStock mvtStock = new MvtStock();
-                mvtStock.setArticle(article);
-                mvtStock.setValeur(sortie * mvt.getArticle().getPrix());
+                mvtStock.setQuantite(articleQuantite);
+                mvtStock.setPrixUnitaire(article.getPrix());
+                mvtStock.setValeur(sortie * article.getPrix());
                 mvtStock.setStock(stockSortie);
                 mvtStock.setValeurStock(valeurStockApres);
                 mvtStock.setDate(date);
@@ -114,7 +117,7 @@ public class MvtStockService {
                 mvtStock.setSource(mvt.getId());
                     //Changement sur l'article 
                 article.setQuantite(sortie);
-                article.setPrix(mvt.getArticle().getPrix());
+                article.setPrix(article.getPrix());
                     //Ajout dans la liste 
                 sortieGeneree.add(mvtStock);
                 return sortieGeneree;
@@ -123,9 +126,10 @@ public class MvtStockService {
                 sortie = sortie - articleQuantite;
                     //Création du mvtStock 
                 MvtStock mvtStock = new MvtStock();
-                mvtStock.setArticle(article);
-                mvtStock.setValeur(mvt.getArticle().getQuantite() * mvt.getArticle().getPrix());
-                mvtStock.setStock(sortie - mvt.getArticle().getQuantite());
+                mvtStock.setQuantite(sortie);
+                mvtStock.setPrixUnitaire(article.getPrix());
+                mvtStock.setValeur(article.getQuantite() * article.getPrix());
+                mvtStock.setStock(sortie - article.getQuantite());
                 mvtStock.setValeurStock(sortie);
                 mvtStock.setDate(date);
                 mvtStock.setType("SORTIE");

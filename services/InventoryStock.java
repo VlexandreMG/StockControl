@@ -45,7 +45,7 @@ public class InventoryStock {
             // Ajout au mouvement de Stock
             historiqueMvt.addAll(ListSortieStock);
             // Affichage de la sortie
-            for (MvtStock mvtStock : historiqueMvt) {
+            for (MvtStock mvtStock : ListSortieStock) {
                 System.out.println("===============================\n");
                 System.out.println(
                         "Date de sortie : " + mvtStock.getDate() + "\n" +

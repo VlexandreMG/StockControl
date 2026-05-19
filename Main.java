@@ -46,9 +46,9 @@ public class Main {
         InventoryStock inventory = new InventoryStock();
         inventory.EntreeOuSortie(article2, historiqueMvt, date, "ENTREE");
         inventory.EntreeOuSortie(article, historiqueMvt, date, "ENTREE");
-        // inventory.EntreeOuSortie(article3, historiqueMvt, date, "SORTIE");
-        // inventory.EntreeOuSortie(article4, historiqueMvt, date, "SORTIE");
         inventory.EntreeOuSortie(article5, historiqueMvt, date, "SORTIE");
+        // // inventory.EntreeOuSortie(article3, historiqueMvt, date, "SORTIE");
+        // // inventory.EntreeOuSortie(article4, historiqueMvt, date, "SORTIE");
 
             // Taille d'historiqueMvt après l'entrée
         System.out.println("Taille de l'historique des mouvements après entrée : " + historiqueMvt.size());

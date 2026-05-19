@@ -119,6 +119,8 @@ public class MvtStockService {
                 sortieGeneree.add(mvtStock);
                 return sortieGeneree;
             } else if (articleQuantite < sortie) {
+                    // Calcul anle soustraction 
+                sortie = sortie - articleQuantite;
                     //Création du mvtStock 
                 MvtStock mvtStock = new MvtStock();
                 mvtStock.setArticle(article);
@@ -130,8 +132,7 @@ public class MvtStockService {
                 mvtStock.setSource(mvt.getId());
                     //Ajout dans la liste des sorties 
                 sortieGeneree.add(mvtStock);
-                    // Calcul anle soustraction 
-                sortie = sortie - articleQuantite;
+                    
             }
         }
         return null;

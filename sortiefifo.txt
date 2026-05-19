@@ -1,0 +1,58 @@
+[ Début : Demande de Sortie ]
+                     │
+                     ▼
+       ┌───────────────────────────┐
+       │ resteASortir = Qte Demande│
+       │ nomProduit = Nom Article  │
+       └─────────────┬─────────────┘
+                     │
+                     ▼
+             [ Boucle for ] ───► ( Pour chaque Mvt de l'historique )
+                     │
+                     ▼
+        / Est-ce une ENTREE du \
+       <  même nomProduit et    > ───► NON ───► [ Passer au Mvt Suivant ]
+        \ avec du stock dispo ?/
+                     │
+                     ▼ OUI
+       ┌───────────────────────────┐
+       │ dispoSurLot = calculer... │
+       └─────────────┬─────────────┘
+                     │
+                     ▼
+         / Est-ce que dispoSurLot  \
+        <   >= resteASortir ?       >
+         \                         /
+            │                     │
+            │ OUI                 │ NON (Ton CAS 3 !)
+            ▼                     ▼
+┌─────────────────────────┐ ┌─────────────────────────┐
+│     [ Branche OUI ]     │ │     [ Branche NON ]     │
+│  (Le lot est suffisant) │ │ (Le lot est insuffisant)│
+├─────────────────────────┤ ├─────────────────────────┤
+│• Créer 1 Mvt SORTIE     │ │• Créer 1 Mvt SORTIE     │
+│• Qte = resteASortir     │ │• Qte = dispoSurLot      │
+│• PU = PU de ce lot      │ │• PU = PU de ce lot      │
+│• Valeur = Qte * PU      │ │• Valeur = Qte * PU      │
+│                         │ │                         │
+│• Calculer Stock global  │ │• Calculer Stock global  │
+│• Calculer Valeur Stock  │ │• Calculer Valeur Stock  │
+│                         │ │                         │
+│• add(mvt) à la liste    │ │• add(mvt) à la liste    │
+└───────────┬─────────────┘ ├─────────────────────────┤
+            │               │• Ajouter temporairement │
+            │               │  le mvt à l'historique  │
+            │               │  (pour le calcul global)│
+            │               │                         │
+            │               │• resteASortir =        │
+            │               │  resteASortir - dispo   │
+            │               └────────────┬────────────┘
+            │                            │
+            ▼                            ▼
+      [ Fini : break ]          [ Continuer la boucle ]
+            │                    (Va chercher le reste
+            │                     sur le lot suivant)
+            ▼
+   [ Retourner la liste ]
+   (Contient 1 ou plusieurs
+    mouvements de sortie)
